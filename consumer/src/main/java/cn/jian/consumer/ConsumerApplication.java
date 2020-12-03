@@ -1,4 +1,4 @@
-package org.sang;
+package cn.jian.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,13 +7,14 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-@SpringBootApplication
 @EnableDiscoveryClient
-public class RibbonConsumerApplication {
+@SpringBootApplication
+public class ConsumerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RibbonConsumerApplication.class, args);
+		SpringApplication.run(ConsumerApplication.class, args);
 	}
+
 	@LoadBalanced
 	@Bean
 	RestTemplate restTemplate() {
