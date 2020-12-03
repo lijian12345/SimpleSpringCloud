@@ -3,7 +3,6 @@ package cn.jian.consumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import cn.jian.Book;
@@ -18,20 +17,20 @@ public class ConsumerBookController {
         return restTemplate.getForEntity("http://HELLO-SERVICE/hello", String.class).getBody();
     }
 
-    @RequestMapping("/book1")
+    @GetMapping("/book1")
     public Book book1() {
         ResponseEntity<Book> responseEntity =
                 restTemplate.getForEntity("http://HELLO-SERVICE/getbook1", Book.class);
         return responseEntity.getBody();
     }
 
-    @RequestMapping("/book2")
+    @GetMapping("/book2")
     public Book book2() {
         Book book = restTemplate.getForObject("http://HELLO-SERVICE/getbook1", Book.class);
         return book;
     }
 
-    @RequestMapping("/book3")
+    @GetMapping("/book3")
     public Book book3() {
         Book book = new Book();
         book.setName("红楼梦");
@@ -40,14 +39,14 @@ public class ConsumerBookController {
         return responseEntity.getBody();
     }
 
-    @RequestMapping("/put")
+    @GetMapping("/put")
     public void put() {
         Book book = new Book();
         book.setName("红楼梦");
         restTemplate.put("http://HELLO-SERVICE/getbook3/{1}", book, 99);
     }
 
-    @RequestMapping("/delete")
+    @GetMapping("/delete")
     public void delete() {
         restTemplate.delete("http://HELLO-SERVICE/getbook4/{1}", 100);
     }

@@ -1,9 +1,11 @@
 package cn.jian.provider;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import cn.jian.Book;
 import lombok.extern.slf4j.Slf4j;
@@ -12,12 +14,12 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class BookController {
 
-    @RequestMapping(value = "/getbook1", method = RequestMethod.GET)
+    @GetMapping("/getbook1")
     public Book book1() {
         return new Book("三国演义", 90, "罗贯中", "花城出版社");
     }
 
-    @RequestMapping(value = "/getbook2", method = RequestMethod.POST)
+    @PostMapping("/getbook2")
     public Book book2(@RequestBody Book book) {
         System.out.println(book.getName());
         book.setPrice(33);
@@ -26,13 +28,13 @@ public class BookController {
         return book;
     }
 
-    @RequestMapping(value = "/getbook3/{id}", method = RequestMethod.PUT)
+    @PutMapping("/getbook3/{id}")
     public void book3(@RequestBody Book book, @PathVariable int id) {
         log.info("book:" + book);
         log.info("id:" + id);
     }
 
-    @RequestMapping(value = "/getbook4/{id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/getbook4/{id}")
     public void book4(@PathVariable int id) {
         log.info("id:" + id);
     }
