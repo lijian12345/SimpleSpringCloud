@@ -1,4 +1,4 @@
-package cn.jian.provider;
+package cn.jian.provider.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

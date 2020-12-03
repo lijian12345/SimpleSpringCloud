@@ -1,4 +1,4 @@
-package cn.jian.consumer;
+package cn.jian.consumer.controller;
 
 import java.net.URI;
 import java.util.HashMap;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+import cn.jian.consumer.service.HelloService;
 
 @RestController
 public class HelloController {

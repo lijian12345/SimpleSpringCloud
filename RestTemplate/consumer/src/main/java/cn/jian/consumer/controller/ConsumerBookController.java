@@ -1,4 +1,4 @@
-package cn.jian.consumer;
+package cn.jian.consumer.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

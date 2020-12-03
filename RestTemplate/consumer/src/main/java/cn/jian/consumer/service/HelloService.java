@@ -1,4 +1,4 @@
-package cn.jian.consumer;
+package cn.jian.consumer.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;

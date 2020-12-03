@@ -1,4 +1,4 @@
-package cn.jian.provider;
+package cn.jian.provider.controller;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

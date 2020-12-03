@@ -4,6 +4,4 @@ spring:
 eureka:
   client:
     service-url:
-      # java -jar provider-0.0.1-SNAPSHOT.jar --server.port=8080
-      # java -jar provider-0.0.1-SNAPSHOT.jar --server.port=8081
       defaultZone: http://localhost:1111/eureka
