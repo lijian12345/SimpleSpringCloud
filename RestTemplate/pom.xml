@@ -10,5 +10,6 @@
     <module>commons</module>
     <module>provider</module>
     <module>consumer</module>
+    <module>eureka-server</module>
   </modules>
 </project>

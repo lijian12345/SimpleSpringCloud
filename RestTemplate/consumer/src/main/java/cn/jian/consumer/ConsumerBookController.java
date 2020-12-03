@@ -12,11 +12,6 @@ public class ConsumerBookController {
     @Autowired
     RestTemplate restTemplate;
 
-    @GetMapping("/consumer")
-    public String helloController() {
-        return restTemplate.getForEntity("http://HELLO-SERVICE/hello", String.class).getBody();
-    }
-
     @GetMapping("/book1")
     public Book book1() {
         ResponseEntity<Book> responseEntity =

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
@@ -18,7 +18,15 @@ public class HelloController {
     @Autowired
     RestTemplate restTemplate;
 
-    @RequestMapping("/gethello")
+    @Autowired
+    HelloService helloService;
+
+    @GetMapping("/consumer")
+    public String helloController() {
+        return helloService.hello();
+    }
+
+    @GetMapping("/gethello")
     public String getHello() {
         ResponseEntity<String> responseEntity =
                 restTemplate.getForEntity("http://HELLO-SERVICE/hello", String.class);
@@ -35,14 +43,14 @@ public class HelloController {
         return result.toString();
     }
 
-    @RequestMapping("/sayhello")
+    @GetMapping("/sayhello")
     public String sayHello() {
         ResponseEntity<String> responseEntity = restTemplate
                 .getForEntity("http://HELLO-SERVICE/sayhello?name={1}", String.class, "张三");
         return responseEntity.getBody();
     }
 
-    @RequestMapping("/sayhello2")
+    @GetMapping("/sayhello2")
     public String sayHello2() {
         Map<String, String> map = new HashMap<>();
         map.put("name", "李四");
@@ -51,7 +59,7 @@ public class HelloController {
         return responseEntity.getBody();
     }
 
-    @RequestMapping("/sayhello3")
+    @GetMapping("/sayhello3")
     public String sayHello3() {
         UriComponents uriComponents =
                 UriComponentsBuilder.fromUriString("http://HELLO-SERVICE/sayhello?name={name}")
