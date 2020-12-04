@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class HelloService {
     @Autowired
-    private RestTemplate restTemplate;
+    RestTemplate restTemplate;
 
     @HystrixCommand(fallbackMethod = "error")
     public String hello() {

@@ -1,16 +1,44 @@
 package cn.jian.consumer.controller;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import com.netflix.hystrix.HystrixCommand;
+import com.netflix.hystrix.HystrixCommandGroupKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import cn.jian.Book;
+import cn.jian.consumer.command.BookCommand;
+import cn.jian.consumer.service.BookService;
 
 @RestController
 public class ConsumerBookController {
     @Autowired
     RestTemplate restTemplate;
+    @Autowired
+    BookService bookService;
+
+    @GetMapping("/test1")
+    public Book test1() throws ExecutionException, InterruptedException {
+        BookCommand bookCommand = new BookCommand(
+                HystrixCommand.Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("")),
+                restTemplate);
+        //同步调用
+        //Book book1 = bookCommand.execute();
+        //异步调用
+        Future<Book> queue = bookCommand.queue();
+        Book book = queue.get();
+        return book;
+    }
+
+    @GetMapping("/test3")
+    public Book test3() throws ExecutionException, InterruptedException {
+        Future<Book> bookFuture = bookService.test3();
+        //调用get方法时也可以设置超时时长
+        return bookFuture.get();
+    }
 
     @GetMapping("/book1")
     public Book book1() {
