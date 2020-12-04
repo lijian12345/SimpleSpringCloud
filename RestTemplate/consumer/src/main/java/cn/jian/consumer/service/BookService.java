@@ -15,9 +15,21 @@ public class BookService {
     @Autowired
     RestTemplate restTemplate;
 
-    @HystrixCommand
+    @HystrixCommand(fallbackMethod = "error1")
     public Book test2() {
+        // int i = 1 / 0;
         return restTemplate.getForObject("http://HELLO-SERVICE/getbook1", Book.class);
+    }
+
+    @HystrixCommand(fallbackMethod = "error2")
+    public Book error1(Throwable throwable) {
+        System.out.println(throwable.getMessage());
+        //发起某个网络请求（可能失败）
+        return null;
+    }
+
+    public Book error2() {
+        return new Book();
     }
 
     @HystrixCommand
@@ -29,7 +41,7 @@ public class BookService {
             }
         };
     }
-    
+
     @HystrixCommand
     public Observable<Book> test4() {
         return Observable.create(new Observable.OnSubscribe<Book>() {
