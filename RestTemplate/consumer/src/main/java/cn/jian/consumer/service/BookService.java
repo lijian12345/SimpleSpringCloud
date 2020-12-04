@@ -2,6 +2,8 @@ package cn.jian.consumer.service;
 
 import java.util.concurrent.Future;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheKey;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
 import com.netflix.hystrix.contrib.javanica.command.AsyncResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,5 +57,11 @@ public class BookService {
                 }
             }
         });
+    }
+    
+    @CacheResult
+    @HystrixCommand
+    public Book test6(@CacheKey Integer id, String aa) {
+        return restTemplate.getForObject("http://HELLO-SERVICE/getbook5/{1}", Book.class, id);
     }
 }

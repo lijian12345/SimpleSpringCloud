@@ -38,4 +38,15 @@ public class BookController {
     public void book4(@PathVariable int id) {
         log.info("id:" + id);
     }
+
+    @GetMapping("/getbook5/{id}")
+    public Book book5(@PathVariable("id") Integer id) {
+        System.out.println(">>>>>>>>/getbook5/{id}");
+        if (id == 1) {
+            return new Book("《李自成》", 55, "姚雪垠", "人民文学出版社");
+        } else if (id == 2) {
+            return new Book("中国文学简史", 33, "林庚", "清华大学出版社");
+        }
+        return new Book("文学改良刍议", 33, "胡适", "无");
+    }
 }
