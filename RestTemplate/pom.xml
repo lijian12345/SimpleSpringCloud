@@ -11,5 +11,6 @@
     <module>provider</module>
     <module>consumer</module>
     <module>eureka-server</module>
+    <module>hystrix-dashboard</module>
   </modules>
 </project>

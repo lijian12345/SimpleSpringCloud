@@ -1,6 +1,5 @@
 package cn.jian.consumer;
 
-import com.netflix.hystrix.contrib.javanica.aop.aspectj.HystrixCommandAspect;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -18,10 +17,5 @@ public class ConsumerApplication {
 	@Bean
 	RestTemplate restTemplate() {
 		return new RestTemplate();
-	}
-
-	@Bean
-	public HystrixCommandAspect hystrixCommandAspect() {
-		return new HystrixCommandAspect();
 	}
 }
